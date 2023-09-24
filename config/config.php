@@ -298,4 +298,32 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Parsers
+    |--------------------------------------------------------------------------
+    |
+    | Specify the various token parsers that are used to parse the token from http request.
+    |
+    */
+
+    'parsers' => [
+        \Tymon\JWTAuth\Http\Parser\TokenHeaders::class,
+        \Tymon\JWTAuth\Http\Parser\AuthHeaders::class,
+        \Tymon\JWTAuth\Http\Parser\Cookies::class,
+        \Tymon\JWTAuth\Http\Parser\QueryString::class,
+        \Tymon\JWTAuth\Http\Parser\RouteParams::class,
+        \Tymon\JWTAuth\Http\Parser\InputSource::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Token key
+    |--------------------------------------------------------------------------
+    |
+    | Specify the token key that is used to parse from the request.
+    |
+    */
+    'parser_token_key' => 'token',
+
 ];
