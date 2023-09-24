@@ -142,28 +142,28 @@ class Lcobucci extends Provider implements JWT
         foreach ($payload as $key => $value) {
             switch ($key) {
                 case RegisteredClaims::ID:
-                    $builder->identifiedBy($value);
+                    $builder = $builder->identifiedBy($value);
                     break;
                 case RegisteredClaims::EXPIRATION_TIME:
-                    $builder->expiresAt(DateTimeImmutable::createFromFormat('U', $value));
+                    $builder = $builder->expiresAt(DateTimeImmutable::createFromFormat('U', $value));
                     break;
                 case RegisteredClaims::NOT_BEFORE:
-                    $builder->canOnlyBeUsedAfter(DateTimeImmutable::createFromFormat('U', $value));
+                    $builder = $builder->canOnlyBeUsedAfter(DateTimeImmutable::createFromFormat('U', $value));
                     break;
                 case RegisteredClaims::ISSUED_AT:
-                    $builder->issuedAt(DateTimeImmutable::createFromFormat('U', $value));
+                    $builder = $builder->issuedAt(DateTimeImmutable::createFromFormat('U', $value));
                     break;
                 case RegisteredClaims::ISSUER:
-                    $builder->issuedBy($value);
+                    $builder = $builder->issuedBy($value);
                     break;
                 case RegisteredClaims::AUDIENCE:
-                    $builder->permittedFor($value);
+                    $builder = $builder->permittedFor($value);
                     break;
                 case RegisteredClaims::SUBJECT:
-                    $builder->relatedTo($value);
+                    $builder = $builder->relatedTo($value);
                     break;
                 default:
-                    $builder->withClaim($key, $value);
+                    $builder = $builder->withClaim($key, $value);
             }
         }
 
