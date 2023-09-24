@@ -85,7 +85,7 @@ class LaravelServiceProvider extends AbstractServiceProvider
 
                 foreach ($chains as $chain){
                     $parsers[] = tap(new $chain, function($chain){
-                        if (is_subclass_of($chain, KeyTrait::class)){
+                        if (method_exists($chain, 'setKey')) {
                             $chain->setKey($this->config('parser_token_key', 'token'));
                         }
                     });
