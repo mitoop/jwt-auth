@@ -1,5 +1,5 @@
 {
-    "name": "tymon/jwt-auth",
+    "name": "mitoop/jwt-auth",
     "description": "JSON Web Token Authentication for Laravel and Lumen",
     "keywords": [
         "auth",
@@ -8,10 +8,10 @@
         "jwt",
         "laravel"
     ],
-    "homepage": "https://github.com/tymondesigns/jwt-auth",
+    "homepage": "https://github.com/mitoop/jwt-auth",
     "support": {
-        "issues": "https://github.com/tymondesigns/jwt-auth/issues",
-        "source": "https://github.com/tymondesigns/jwt-auth"
+        "issues": "https://github.com/mitoop/jwt-auth/issues",
+        "source": "https://github.com/mitoop/jwt-auth"
     },
     "license": "MIT",
     "authors": [
@@ -19,6 +19,11 @@
             "name": "Sean Tymon",
             "email": "tymon148@gmail.com",
             "homepage": "https://tymon.xyz",
+            "role": "Developer"
+        },
+        {
+            "name": "mitoop",
+            "email": "me@mitoop.com",
             "role": "Developer"
         }
     ],
