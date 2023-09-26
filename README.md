@@ -1,6 +1,6 @@
 ## README
 
-It's a fork of [`tymondesigns/jwt-auth v2.0.0`](https://github.com/tymondesigns/jwt-auth)
+It's a fork of [`tymondesigns/jwt-auth v2.0.0`](https://github.com/tymondesigns/jwt-auth/tree/2.0.0)
 
 Some changes:
 - `PHP` ^8.0 to ^8.1
