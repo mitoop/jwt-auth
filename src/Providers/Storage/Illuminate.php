@@ -64,10 +64,7 @@ class Illuminate implements Storage
     public function add($key, $value, $minutes)
     {
         // If the laravel version is 5.8 or higher then convert minutes to seconds.
-        if ($this->laravelVersion !== null
-            && is_int($minutes)
-            && version_compare($this->laravelVersion, '5.8', '>=')
-        ) {
+        if ($this->laravelVersion !== null && is_int($minutes)) {
             $minutes = $minutes * 60;
         }
 
@@ -154,23 +151,12 @@ class Illuminate implements Storage
      */
     protected function determineTagSupport()
     {
-        // Laravel >= 5.1.28
         if (method_exists($this->cache, 'tags') || $this->cache instanceof PsrCacheInterface) {
             try {
                 // Attempt the repository tags command, which throws exceptions when unsupported
                 $this->cache->tags($this->tag);
                 $this->supportsTags = true;
             } catch (BadMethodCallException $ex) {
-                $this->supportsTags = false;
-            }
-        } else {
-            // Laravel <= 5.1.27
-            if (method_exists($this->cache, 'getStore')) {
-                // Check for the tags function directly on the store
-                $this->supportsTags = method_exists($this->cache->getStore(), 'tags');
-            } else {
-                // Must be using custom cache repository without getStore(), and all bets are off,
-                // or we are mocking the cache contract (in testing), which will not create a getStore method
                 $this->supportsTags = false;
             }
         }
