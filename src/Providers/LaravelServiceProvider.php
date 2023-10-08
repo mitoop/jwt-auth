@@ -62,18 +62,24 @@ class LaravelServiceProvider extends AbstractServiceProvider
     {
         $this->app->singleton('tymon.jwt.parser', function ($app) {
             $parser = tap(new Parser($app['request']), function(Parser $parser){
-                $chains = Arr::wrap($this->config('parsers'));
-                $parsers = [];
+                $options = $this->config('parsers');
+                $chain = [];
 
-                foreach ($chains as $chain){
-                    $parsers[] = tap(new $chain, function($chain){
-                        if (method_exists($chain, 'setKey')) {
-                            $chain->setKey($this->config('parser_token_key', 'token'));
+                foreach ($options as $option){
+                    if (str_contains(strtolower($option), 'cookie')) {
+                        $option = new $option($this->config('decrypt_cookies'));
+                    }else{
+                        $option = new $option;
+                    }
+
+                    $chain[] = tap($option, function($option){
+                        if (method_exists($option, 'setKey')) {
+                            $option->setKey($this->config('parser_token_key', 'token'));
                         }
                     });
                 }
 
-                $parser->setChain($parsers);
+                $parser->setChain($chain);
             });
 
             $app->refresh('request', $parser, 'setRequest');
